@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image:
+      postgres: "13"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1984
+      POSTGRES_DB: gestionhotelera
+    ports:
+      - "5432 : 5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
