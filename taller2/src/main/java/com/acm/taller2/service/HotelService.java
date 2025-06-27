@@ -1,6 +1,6 @@
 package com.acm.taller2.service;
 
-import com.acm.taller2.persistence.HotelEntity;
+import com.acm.taller2.persistence.entities.HotelEntity;
 import com.acm.taller2.persistence.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,4 +31,7 @@ public class HotelService {
     }
 
 
+    public Object saveHotel(com.acm.taller2.persistence.HotelEntity hotelEntity) {
+        return null;
+    }
 }
