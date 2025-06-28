@@ -1,24 +1,24 @@
 package com.acm.taller2.mappers;
 
-import com.acm.hotel_gestion.controller.dto.UsuarioDto;
-import com.acm.hotel_gestion.models.*;
-import com.acm.hotel_gestion.persistence.entities.*;
+import com.acm.taller2.dto.UsuarioDTO;
+import com.acm.taller2.model.*;
+import com.acm.taller2.persistence.entities.*;
 
 public class UsuarioMapper {
-    public static UsuarioDto modelToDto(UsuarioModel usuario){
-        return UsuarioDto.builder()
+    public static UsuarioDTO modelToDto(Usuario usuario){
+        return UsuarioDTO.builder()
                 .id(usuario.getId())
                 .nombreUsuario(usuario.getNombreUsuario())
                 .contrasena(usuario.getContrasena())
                 .rol(usuario.getRol())
-                .idcliente(ClienteModel.builder().id(usuario.getClienteID()).build().getId())
-                .idempleado(EmpleadoModel.builder().id(usuario.getEmpleadoID()).build().getId())
-                .idadministradorGeneral(AdministradorGeneralModel.builder().id(usuario.getAdministradorGeneralID()).build().getId())
-                .idadministrador(AdministradorModel.builder().id(usuario.getAdministradorID()).build().getId())
+                .idcliente(Cliente.builder().id(usuario.getClienteID()).build().getId())
+                .idempleado(Empleado.builder().id(usuario.getEmpleadoID()).build().getId())
+                .idadministradorGeneral(AdministradorGeneral.builder().id(usuario.getAdministradorGeneralID()).build().getId())
+                .idadministrador(Administrador.builder().id(usuario.getAdministradorID()).build().getId())
                 .build();
     }
-    public static UsuarioModel dtoToModel(UsuarioDto usuario){
-        return UsuarioModel.builder()
+    public static Usuario dtoToModel(UsuarioDTO usuario){
+        return Usuario.builder()
                 .id(usuario.getId())
                 .nombreUsuario(usuario.getNombreUsuario())
                 .contrasena(usuario.getContrasena())
@@ -29,7 +29,7 @@ public class UsuarioMapper {
                 .administradorID(usuario.getIdadministrador())
                 .build();
     }
-    public static UsuarioEntity modelToEntity(UsuarioModel usuario){
+    public static UsuarioEntity modelToEntity(Usuario usuario){
         return UsuarioEntity.builder()
                 .id(usuario.getId())
                 .nombreUsuario(usuario.getNombreUsuario())
@@ -41,8 +41,8 @@ public class UsuarioMapper {
                 .administrador(usuario.getAdministradorID() != null ? AdministradorEntity.builder().id(usuario.getAdministradorID()).build():null)
                 .build();
     }
-    public static UsuarioModel entityToModel(UsuarioEntity usuario){
-        return UsuarioModel.builder()
+    public static Usuario entityToModel(UsuarioEntity usuario){
+        return Usuario.builder()
                 .id(usuario.getId())
                 .nombreUsuario(usuario.getNombreUsuario())
                 .contrasena(usuario.getContrasena())

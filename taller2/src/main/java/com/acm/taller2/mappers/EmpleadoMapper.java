@@ -1,12 +1,12 @@
 package com.acm.taller2.mappers;
 
-import com.acm.hotel_gestion.controller.dto.EmpleadoDto;
-import com.acm.hotel_gestion.models.EmpleadoModel;
-import com.acm.hotel_gestion.persistence.entities.EmpleadoEntity;
+import com.acm.taller2.dto.EmpleadoDTO;
+import com.acm.taller2.model.Empleado;
+import com.acm.taller2.persistence.entities.EmpleadoEntity;
 
 public class EmpleadoMapper {
-    public static EmpleadoDto modelToDto(EmpleadoModel empleado) {
-        return EmpleadoDto.builder()
+    public static EmpleadoDTO modelToDto(Empleado empleado) {
+        return EmpleadoDTO.builder()
                 .id(empleado.getId())
                 .correo(empleado.getCorreo())
                 .telefono(empleado.getTelefono())
@@ -16,8 +16,8 @@ public class EmpleadoMapper {
                 .segundoApellido(empleado.getSegundoApellido())
                 .build();
     }
-    public static EmpleadoModel dtoToModel(EmpleadoDto empleado) {
-        return  EmpleadoModel.builder()
+    public static Empleado dtoToModel(EmpleadoDTO empleado) {
+        return  Empleado.builder()
                 .id(empleado.getId())
                 .correo(empleado.getCorreo())
                 .telefono(empleado.getTelefono())
@@ -27,7 +27,7 @@ public class EmpleadoMapper {
                 .segundoApellido(empleado.getSegundoApellido())
                 .build();
     }
-    public static EmpleadoEntity modelToEntity(EmpleadoModel empleado) {
+    public static EmpleadoEntity modelToEntity(Empleado empleado) {
         return EmpleadoEntity.builder()
                 .id(empleado.getId())
                 .correo(empleado.getCorreo())
@@ -38,8 +38,8 @@ public class EmpleadoMapper {
                 .segundoApellido(empleado.getSegundoApellido())
                 .build();
     }
-    public static EmpleadoModel entityToModel(EmpleadoEntity empleado) {
-        return EmpleadoModel.builder()
+    public static Empleado entityToModel(EmpleadoEntity empleado) {
+        return Empleado.builder()
                 .id(empleado.getId())
                 .correo(empleado.getCorreo())
                 .telefono(empleado.getTelefono())

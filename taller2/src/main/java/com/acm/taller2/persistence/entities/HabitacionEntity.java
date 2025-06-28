@@ -78,5 +78,27 @@ public class HabitacionEntity implements Serializable {
         this.disponible = disponible;
     }
 
+    public HotelEntity getHotel() {
+        return hotel;
+    }
 
+    public void setHotel(HotelEntity hotel) {
+        this.hotel = hotel;
+    }
+
+    public TipoHabitacionEntity getTipoHabitacion() {
+        return tipoHabitacion;
+    }
+
+    public void setTipoHabitacion(TipoHabitacionEntity tipoHabitacion) {
+        this.tipoHabitacion = tipoHabitacion;
+    }
+
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
 }

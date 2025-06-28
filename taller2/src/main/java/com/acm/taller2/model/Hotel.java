@@ -1,34 +1,20 @@
-package com.acm.taller2.persistence.entities;
+package com.acm.taller2.model;
 
-import jakarta.persistence.*;
 import lombok.Builder;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
 @Builder
-@Table(name = "hotel")
-public class HotelEntity implements Serializable {
-
-    @Id
-    @Column(name = "id_hotel")
+public class Hotel {
     private Long id;
-
     private String nombre;
     private String ciudad;
     private String telefono;
     private String correo;
     private String direccion;
 
-    @OneToMany(mappedBy = "hotelEntity")
-    private List<HabitacionEntity> habitaciones = new ArrayList<>();
-
-    public HotelEntity() {
+    public Hotel() {
     }
 
-    public HotelEntity(long id, String nombre, String ciudad, String telefono, String correo, String direccion) {
+    public Hotel(Long id, String nombre, String ciudad, String telefono, String correo, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.ciudad = ciudad;
@@ -37,19 +23,11 @@ public class HotelEntity implements Serializable {
         this.direccion = direccion;
     }
 
-    public List<HabitacionEntity> getHabitaciones() {
-        return habitaciones;
-    }
-
-    public void setHabitaciones(List<HabitacionEntity> habitaciones) {
-        this.habitaciones = habitaciones;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -92,7 +70,4 @@ public class HotelEntity implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-
-
 }

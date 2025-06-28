@@ -1,28 +1,28 @@
 package com.acm.taller2.mappers;
 
-import com.acm.hotel_gestion.controller.dto.ReservaDto;
-import com.acm.hotel_gestion.models.ClienteModel;
-import com.acm.hotel_gestion.models.HabitacionModel;
-import com.acm.hotel_gestion.models.ReservaModel;
-import com.acm.hotel_gestion.persistence.entities.ClienteEntity;
-import com.acm.hotel_gestion.persistence.entities.HabitacionEntity;
-import com.acm.hotel_gestion.persistence.entities.ReservaEntity;
+import com.acm.taller2.dto.ReservaDTO;
+import com.acm.taller2.model.Cliente;
+import com.acm.taller2.model.Habitacion;
+import com.acm.taller2.model.Reserva;
+import com.acm.taller2.persistence.entities.ClienteEntity;
+import com.acm.taller2.persistence.entities.HabitacionEntity;
+import com.acm.taller2.persistence.entities.ReservaEntity;
 
 public class ReservaMapper {
-    public static ReservaDto modelToDto(ReservaModel reserva){
-        return ReservaDto.builder()
+    public static ReservaDTO modelToDto(Reserva reserva){
+        return ReservaDTO.builder()
                 .id(reserva.getId())
                 .fechaInicio(reserva.getFechaInicio())
                 .fechaFinal(reserva.getFechaFinal())
                 .cantidadDias(reserva.getCantidadDias())
                 .estado(reserva.getEstado())
                 .fechaReserva(reserva.getFechaReserva())
-                .idhabitacion(HabitacionModel.builder().id(reserva.getHabitacionID()).build().getId())
-                .idcliente(ClienteModel.builder().id(reserva.getClienteID()).build().getId())
+                .idhabitacion(Habitacion.builder().id(reserva.getHabitacionID()).build().getId())
+                .idcliente(Cliente.builder().id(reserva.getClienteID()).build().getId())
                 .build();
     }
-    public static ReservaModel dtoToModel(ReservaDto reserva){
-        return ReservaModel.builder()
+    public static Reserva dtoToModel(ReservaDTO reserva){
+        return Reserva.builder()
                 .id(reserva.getId())
                 .fechaInicio(reserva.getFechaInicio())
                 .fechaFinal(reserva.getFechaFinal())
@@ -33,7 +33,7 @@ public class ReservaMapper {
                 .clienteID(reserva.getIdcliente())
                 .build();
     }
-    public static ReservaEntity modelToEntity(ReservaModel reserva){
+    public static ReservaEntity modelToEntity(Reserva reserva){
         return ReservaEntity.builder()
                 .id(reserva.getId())
                 .fechaInicio(reserva.getFechaInicio())
@@ -45,8 +45,8 @@ public class ReservaMapper {
                 .cliente(ClienteEntity.builder().id(reserva.getClienteID()).build())
                 .build();
     }
-    public static ReservaModel entityToModel(ReservaEntity reserva){
-        return ReservaModel.builder()
+    public static Reserva entityToModel(ReservaEntity reserva){
+        return Reserva.builder()
                 .id(reserva.getId())
                 .fechaInicio(reserva.getFechaInicio())
                 .fechaFinal(reserva.getFechaFinal())

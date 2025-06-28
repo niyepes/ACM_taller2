@@ -1,12 +1,12 @@
 package com.acm.taller2.mappers;
 
-import com.acm.hotel_gestion.controller.dto.ClienteDto;
-import com.acm.hotel_gestion.models.ClienteModel;
-import com.acm.hotel_gestion.persistence.entities.ClienteEntity;
+import com.acm.taller2.dto.ClienteDTO;
+import com.acm.taller2.model.Cliente;
+import com.acm.taller2.persistence.entities.ClienteEntity;
 
 public class ClienteMapper {
-    public static ClienteDto modelToDto(ClienteModel cliente) {
-        return ClienteDto.builder()
+    public static ClienteDTO modelToDto(Cliente cliente) {
+        return ClienteDTO.builder()
                 .id(cliente.getId())
                 .primerNombre(cliente.getPrimerNombre())
                 .segundoNombre(cliente.getSegundoNombre())
@@ -16,8 +16,8 @@ public class ClienteMapper {
                 .direccion(cliente.getDireccion())
                 .build();
     }
-    public static ClienteModel dtoToModel(ClienteDto cliente) {
-        return  ClienteModel.builder()
+    public static Cliente dtoToModel(ClienteDTO cliente) {
+        return  Cliente.builder()
                 .id(cliente.getId())
                 .primerNombre(cliente.getPrimerNombre())
                 .segundoNombre(cliente.getSegundoNombre())
@@ -27,7 +27,7 @@ public class ClienteMapper {
                 .direccion(cliente.getDireccion())
                 .build();
     }
-    public static ClienteEntity modelToEntity(ClienteModel cliente) {
+    public static ClienteEntity modelToEntity(Cliente cliente) {
         return ClienteEntity.builder()
                 .id(cliente.getId())
                 .primerNombre(cliente.getPrimerNombre())
@@ -38,8 +38,8 @@ public class ClienteMapper {
                 .direccion(cliente.getDireccion())
                 .build();
     }
-    public static ClienteModel entityToModel(ClienteEntity cliente) {
-        return ClienteModel.builder()
+    public static Cliente entityToModel(ClienteEntity cliente) {
+        return Cliente.builder()
                 .id(cliente.getId())
                 .primerNombre(cliente.getPrimerNombre())
                 .segundoNombre(cliente.getSegundoNombre())

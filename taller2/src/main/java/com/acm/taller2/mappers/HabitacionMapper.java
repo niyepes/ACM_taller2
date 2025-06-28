@@ -1,26 +1,26 @@
 package com.acm.taller2.mappers;
 
-import com.acm.hotel_gestion.controller.dto.HabitacionDto;
-import com.acm.hotel_gestion.models.HabitacionModel;
-import com.acm.hotel_gestion.models.HotelModel;
-import com.acm.hotel_gestion.models.TipoHabitacionModel;
-import com.acm.hotel_gestion.persistence.entities.HabitacionEntity;
-import com.acm.hotel_gestion.persistence.entities.HotelEntity;
-import com.acm.hotel_gestion.persistence.entities.TipoHabitacionEntity;
+import com.acm.taller2.dto.HabitacionDTO;
+import com.acm.taller2.model.Habitacion;
+import com.acm.taller2.model.Hotel;
+import com.acm.taller2.model.TipoHabitacion;
+import com.acm.taller2.persistence.entities.HabitacionEntity;
+import com.acm.taller2.persistence.entities.HotelEntity;
+import com.acm.taller2.persistence.entities.TipoHabitacionEntity;
 
 public class HabitacionMapper {
-    public static HabitacionDto modelToDto(HabitacionModel habitacion){
-       return HabitacionDto.builder()
+    public static HabitacionDTO modelToDto(Habitacion habitacion){
+       return HabitacionDTO.builder()
                .id(habitacion.getId())
                .numeroHabitacion(habitacion.getNumeroHabitacion())
                .precioDia(habitacion.getPrecioDia())
                .disponible(habitacion.getDisponible())
-               .idhotel(HotelModel.builder().id(habitacion.getHotelID()).build().getId())
-               .idTipoHabitacion(TipoHabitacionModel.builder().id(habitacion.getTipoHabitacionID()).build().getId())
+               .idhotel(Hotel.builder().id(habitacion.getHotelID()).build().getId())
+               .idTipoHabitacion(TipoHabitacion.builder().id(habitacion.getTipoHabitacionID()).build().getId())
                .build();
     }
-    public static HabitacionModel dtoToModel(HabitacionDto habitacion){
-        return HabitacionModel.builder()
+    public static Habitacion dtoToModel(HabitacionDTO habitacion){
+        return Habitacion.builder()
                 .id(habitacion.getId())
                 .numeroHabitacion(habitacion.getNumeroHabitacion())
                 .precioDia(habitacion.getPrecioDia())
@@ -29,7 +29,7 @@ public class HabitacionMapper {
                 .tipoHabitacionID(habitacion.getIdTipoHabitacion())
                 .build();
     }
-    public static HabitacionEntity modelToEntity(HabitacionModel habitacion){
+    public static HabitacionEntity modelToEntity(Habitacion habitacion){
         return HabitacionEntity.builder()
                 .id(habitacion.getId())
                 .numeroHabitacion(habitacion.getNumeroHabitacion())
@@ -39,8 +39,8 @@ public class HabitacionMapper {
                 .tipoHabitacion(TipoHabitacionEntity.builder().id(habitacion.getTipoHabitacionID()).build())
                 .build();
     }
-    public static HabitacionModel entityToModel(HabitacionEntity habitacion){
-        return HabitacionModel.builder()
+    public static Habitacion entityToModel(HabitacionEntity habitacion){
+        return Habitacion.builder()
                 .id(habitacion.getId())
                 .numeroHabitacion(habitacion.getNumeroHabitacion())
                 .precioDia(habitacion.getPrecioDia())

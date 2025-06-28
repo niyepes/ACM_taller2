@@ -1,12 +1,12 @@
 package com.acm.taller2.mappers;
 
-import com.acm.hotel_gestion.controller.dto.HotelDto;
-import com.acm.hotel_gestion.models.HotelModel;
-import com.acm.hotel_gestion.persistence.entities.HotelEntity;
+import com.acm.taller2.dto.HotelDTO;
+import com.acm.taller2.model.Hotel;
+import com.acm.taller2.persistence.entities.HotelEntity;
 
 public class HotelMapper {
-    public static HotelDto modelToDto(HotelModel product) {
-        return HotelDto.builder()
+    public static HotelDTO modelToDto(Hotel product) {
+        return HotelDTO.builder()
                 .id(product.getId())
                 .nombre(product.getNombre())
                 .ciudad(product.getCiudad())
@@ -16,8 +16,8 @@ public class HotelMapper {
                 .build();
     }
 
-    public static HotelModel dtoToModel(HotelDto product) {
-        return HotelModel.builder()
+    public static Hotel dtoToModel(HotelDTO product) {
+        return Hotel.builder()
                 .id(product.getId())
                 .nombre(product.getNombre())
                 .ciudad(product.getCiudad())
@@ -27,7 +27,7 @@ public class HotelMapper {
                 .build();
     }
 
-    public static HotelEntity modelToEntity(HotelModel product) {
+    public static HotelEntity modelToEntity(Hotel product) {
         return HotelEntity.builder()
                 .id(product.getId())
                 .nombre(product.getNombre())
@@ -38,8 +38,8 @@ public class HotelMapper {
                 .build();
     }
 
-    public static HotelModel entityToModel(HotelEntity product) {
-        return HotelModel.builder()
+    public static Hotel entityToModel(HotelEntity product) {
+        return Hotel.builder()
                 .id(product.getId())
                 .nombre(product.getNombre())
                 .ciudad(product.getCiudad())

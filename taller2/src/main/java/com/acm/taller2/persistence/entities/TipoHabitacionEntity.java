@@ -60,4 +60,20 @@ public class TipoHabitacionEntity implements Serializable {
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
+
+    public HotelEntity getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(HotelEntity hotel) {
+        this.hotel = hotel;
+    }
+
+    public List<HabitacionEntity> getHabitaciones() {
+        return habitaciones;
+    }
+
+    public void setHabitaciones(List<HabitacionEntity> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
 }

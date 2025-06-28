@@ -79,4 +79,36 @@ public class UsuarioEntity implements Serializable {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    public EmpleadoEntity getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(EmpleadoEntity empleado) {
+        this.empleado = empleado;
+    }
+
+    public AdministradorGeneralEntity getAdministradorGeneral() {
+        return administradorGeneral;
+    }
+
+    public void setAdministradorGeneral(AdministradorGeneralEntity administradorGeneral) {
+        this.administradorGeneral = administradorGeneral;
+    }
+
+    public AdministradorEntity getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(AdministradorEntity administrador) {
+        this.administrador = administrador;
+    }
 }

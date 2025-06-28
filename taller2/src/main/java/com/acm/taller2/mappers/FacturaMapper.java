@@ -1,25 +1,25 @@
 package com.acm.taller2.mappers;
 
-import com.acm.hotel_gestion.controller.dto.FacturaDto;
-import com.acm.hotel_gestion.models.FacturaModel;
-import com.acm.hotel_gestion.models.PagoModel;
-import com.acm.hotel_gestion.models.ReservaModel;
-import com.acm.hotel_gestion.persistence.entities.FacturaEntity;
-import com.acm.hotel_gestion.persistence.entities.PagoEntity;
-import com.acm.hotel_gestion.persistence.entities.ReservaEntity;
+import com.acm.taller2.dto.FacturaDTO;
+import com.acm.taller2.model.Factura;
+import com.acm.taller2.model.Pago;
+import com.acm.taller2.model.Reserva;
+import com.acm.taller2.persistence.entities.FacturaEntity;
+import com.acm.taller2.persistence.entities.PagoEntity;
+import com.acm.taller2.persistence.entities.ReservaEntity;
 
 public class FacturaMapper {
-    public static FacturaDto modelToDto(FacturaModel factura){
-        return FacturaDto.builder()
+    public static FacturaDTO modelToDto(Factura factura){
+        return FacturaDTO.builder()
                 .id(factura.getId())
-                .idreserva(ReservaModel.builder().id(factura.getReservaID()).build().getId())
-                .idpago(PagoModel.builder().id(factura.getPagoID()).build().getId())
+                .idreserva(Reserva.builder().id(factura.getReservaID()).build().getId())
+                .idpago(Pago.builder().id(factura.getPagoID()).build().getId())
                 .valorTotal(factura.getValorTotal())
                 .fechaEmision(factura.getFechaEmision())
                 .build();
     }
-    public static FacturaModel dtoToModel(FacturaDto factura){
-        return FacturaModel.builder()
+    public static Factura dtoToModel(FacturaDTO factura){
+        return Factura.builder()
                 .id(factura.getId())
                 .reservaID(factura.getIdreserva())
                 .pagoID(factura.getIdpago())
@@ -27,7 +27,7 @@ public class FacturaMapper {
                 .fechaEmision(factura.getFechaEmision())
                 .build();
     }
-    public static FacturaEntity modelToEntity(FacturaModel factura){
+    public static FacturaEntity modelToEntity(Factura factura){
         return FacturaEntity.builder()
                 .id(factura.getId())
                 .reserva(ReservaEntity.builder().id(factura.getReservaID()).build())
@@ -36,8 +36,8 @@ public class FacturaMapper {
                 .fechaEmision(factura.getFechaEmision())
                 .build();
     }
-    public static FacturaModel entityToModel(FacturaEntity factura){
-        return FacturaModel.builder()
+    public static Factura entityToModel(FacturaEntity factura){
+        return Factura.builder()
                 .id(factura.getId())
                 .pagoID(factura.getPago().getId())
                 .reservaID(factura.getReserva().getId())

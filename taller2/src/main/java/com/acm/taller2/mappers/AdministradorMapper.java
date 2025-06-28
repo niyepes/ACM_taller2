@@ -27,7 +27,7 @@ public class AdministradorMapper {
                 .telefono(administrador.getTelefono())
                 .build();
     }
-    public static AdministradorEntity modelToEntity(AdministradorModel administrador) {
+    public static AdministradorEntity modelToEntity(Administrador administrador) {
         return AdministradorEntity.builder()
                 .id(administrador.getId())
                 .primerNombre(administrador.getPrimerNombre())
@@ -38,8 +38,8 @@ public class AdministradorMapper {
                 .telefono(administrador.getTelefono())
                 .build();
     }
-    public static AdministradorModel entityToModel(AdministradorEntity administrador) {
-        return AdministradorModel.builder()
+    public static Administrador entityToModel(AdministradorEntity administrador) {
+        return Administrador.builder()
                 .id(administrador.getId())
                 .primerNombre(administrador.getPrimerNombre())
                 .segundoNombre(administrador.getSegundoNombre())

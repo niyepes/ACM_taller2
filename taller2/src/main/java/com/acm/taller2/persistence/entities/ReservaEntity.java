@@ -104,4 +104,36 @@ public class ReservaEntity implements Serializable {
     public void setFechaReserva(Timestamp fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
+
+    public HabitacionEntity getHabitacion() {
+        return habitacion;
+    }
+
+    public void setHabitacion(HabitacionEntity habitacion) {
+        this.habitacion = habitacion;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<PagoEntity> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<PagoEntity> pagos) {
+        this.pagos = pagos;
+    }
+
+    public List<FacturaEntity> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<FacturaEntity> facturas) {
+        this.facturas = facturas;
+    }
 }

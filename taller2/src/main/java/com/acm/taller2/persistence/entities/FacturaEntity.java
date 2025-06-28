@@ -34,10 +34,11 @@ public class FacturaEntity implements Serializable {
     public FacturaEntity() {
     }
 
-    public FacturaEntity(Long id, Integer valorTotal, Timestamp fechaEmision) {
+    public FacturaEntity(Long id, Integer valorTotal, Timestamp fechaEmision, PagoEntity pago) {
         this.id = id;
         this.valorTotal = valorTotal;
         this.fechaEmision = fechaEmision;
+        this.pago = pago;
     }
 
     public Long getId() {
@@ -62,5 +63,21 @@ public class FacturaEntity implements Serializable {
 
     public void setFechaEmision(Timestamp fechaEmision) {
         this.fechaEmision = fechaEmision;
+    }
+
+    public ReservaEntity getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaEntity reserva) {
+        this.reserva = reserva;
+    }
+
+    public PagoEntity getPago() {
+        return pago;
+    }
+
+    public void setPago(PagoEntity pago) {
+        this.pago = pago;
     }
 }
