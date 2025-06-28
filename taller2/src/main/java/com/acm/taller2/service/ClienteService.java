@@ -1,21 +1,26 @@
-package com.acm.hotel_gestion.services;
+package com.acm.taller2.service;
 
-import com.acm.hotel_gestion.models.ClienteModel;
-import com.acm.hotel_gestion.persistence.entities.ClienteEntity;
-import com.acm.hotel_gestion.persistence.repository.ClienteRepository;
-import com.acm.hotel_gestion.util.ClienteMapper;
-import lombok.RequiredArgsConstructor;
+
+import com.acm.taller2.mappers.ClienteMapper;
+import com.acm.taller2.model.Cliente;
+import com.acm.taller2.persistence.entities.ClienteEntity;
+import com.acm.taller2.persistence.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class ClienteService {
     private final ClienteRepository clienteRepository;
 
-    public ClienteModel saveCliente(ClienteModel cliente) {
+    @Autowired
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
+
+    public Cliente saveCliente(Cliente cliente) {
         ClienteEntity clienteEntity = clienteRepository.save(ClienteMapper.modelToEntity(cliente));
         return ClienteMapper.entityToModel(clienteEntity);
     }
@@ -24,17 +29,17 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    public ClienteModel findById(Long id) {
+    public Cliente findById(Long id) {
         ClienteEntity clienteEntity = clienteRepository.findById(id).orElse(null);
         return clienteEntity != null ? ClienteMapper.entityToModel(clienteEntity) : null;
     }
 
-    public ClienteModel updateCliente(ClienteModel cliente) {
+    public Cliente updateCliente(Cliente cliente) {
         ClienteEntity clienteEntity =  clienteRepository.save(ClienteMapper.modelToEntity(cliente));
         return ClienteMapper.entityToModel(clienteEntity);
     }
 
-    public List<ClienteModel> findAll() {
+    public List<Cliente> findAll() {
         return clienteRepository.findAll().stream().map(ClienteMapper::entityToModel).collect(Collectors.toList());
     }
 }

@@ -5,8 +5,10 @@ import com.acm.taller2.persistence.repository.HabitacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.acm.taller2.mappers.HabitacionMapper;
 
 @Service
 public class HabitacionService {
@@ -37,7 +39,6 @@ public class HabitacionService {
         }
 
         public List<HabitacionEntity> findAll() {
-            return habitacionRepository.findAll().stream().map(HabitacionMapper::entityToModel).collect(Collectors.toList());
+            return new ArrayList<>(habitacionRepository.findAll());
         }
     }
-}

@@ -1,21 +1,26 @@
-package com.acm.hotel_gestion.services;
+package com.acm.taller2.service;
 
-import com.acm.hotel_gestion.models.PagoModel;
-import com.acm.hotel_gestion.persistence.entities.PagoEntity;
-import com.acm.hotel_gestion.persistence.repository.PagoRepository;
-import com.acm.hotel_gestion.util.PagoMapper;
-import lombok.RequiredArgsConstructor;
+import com.acm.taller2.mappers.PagoMapper;
+import com.acm.taller2.model.Pago;
+import com.acm.taller2.persistence.entities.PagoEntity;
+import com.acm.taller2.persistence.repository.PagoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+
 public class PagoService {
     private final PagoRepository pagoRepository;
 
-    public PagoModel savePago(PagoModel pago) {
+    @Autowired
+    public PagoService(PagoRepository pagoRepository) {
+        this.pagoRepository = pagoRepository;
+    }
+
+    public Pago savePago(Pago pago) {
         PagoEntity pagoEntity = pagoRepository.save(PagoMapper.modelToEntity(pago));
         return PagoMapper.entityToModel(pagoEntity);
     }
@@ -24,17 +29,17 @@ public class PagoService {
         pagoRepository.deleteById(id);
     }
 
-    public PagoModel findById(Long id) {
+    public Pago findById(Long id) {
         PagoEntity pagoEntity = pagoRepository.findById(id).orElse(null);
         return pagoEntity != null ? PagoMapper.entityToModel(pagoEntity) : null;
     }
 
-    public PagoModel updatePago(PagoModel pago) {
+    public Pago updatePago(Pago pago) {
         PagoEntity pagoEntity =  pagoRepository.save(PagoMapper.modelToEntity(pago));
         return PagoMapper.entityToModel(pagoEntity);
     }
 
-    public List<PagoModel> findAll() {
+    public List<Pago> findAll() {
         return pagoRepository.findAll().stream().map(PagoMapper::entityToModel).collect(Collectors.toList());
     }
 }

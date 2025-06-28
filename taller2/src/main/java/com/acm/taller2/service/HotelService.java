@@ -1,9 +1,15 @@
 package com.acm.taller2.service;
 
+import com.acm.taller2.mappers.HotelMapper;
+import com.acm.taller2.model.Hotel;
 import com.acm.taller2.persistence.entities.HotelEntity;
 import com.acm.taller2.persistence.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Service
 public class HotelService {
@@ -14,24 +20,25 @@ public class HotelService {
         this.hotelRepository = hotelRepository;
     }
 
-    public HotelEntity saveHotel (HotelEntity hotelEntity){
+    public HotelEntity saveHotel(HotelEntity hotelEntity) {
         return hotelRepository.save(hotelEntity);
     }
 
-    public void deleteHotel (Long id){
+    public void deleteById(Long id) {
         hotelRepository.deleteById(id);
     }
 
-    public HotelEntity findHotelById (Long id){
-        return hotelRepository.findById(id).orElse(null);
+    public Hotel findById(Long id) {
+        HotelEntity hotelEntity = hotelRepository.findById(id).orElse(null);
+        return hotelEntity != null ? HotelMapper.entityToModel(hotelEntity) : null;
     }
 
-    public HotelEntity updateHotel (HotelEntity HotelEntity){
-        return hotelRepository.save(new HotelEntity());
+    public Hotel updateHotel(Hotel hotel) {
+        HotelEntity hotelEntity =  hotelRepository.save(HotelMapper.modelToEntity(hotel));
+        return HotelMapper.entityToModel(hotelEntity);
     }
 
-
-    public Object saveHotel(com.acm.taller2.persistence.HotelEntity hotelEntity) {
-        return null;
+    public List<Hotel> findAll() {
+        return hotelRepository.findAll().stream().map(HotelMapper::entityToModel).collect(Collectors.toList());
     }
 }

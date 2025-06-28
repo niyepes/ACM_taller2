@@ -1,21 +1,25 @@
-package com.acm.hotel_gestion.services;
+package com.acm.taller2.service;
 
-import com.acm.hotel_gestion.models.UsuarioModel;
-import com.acm.hotel_gestion.persistence.entities.UsuarioEntity;
-import com.acm.hotel_gestion.persistence.repository.UsuarioRepository;
-import com.acm.hotel_gestion.util.UsuarioMapper;
-import lombok.RequiredArgsConstructor;
+import com.acm.taller2.mappers.UsuarioMapper;
+import com.acm.taller2.model.Usuario;
+import com.acm.taller2.persistence.entities.UsuarioEntity;
+import com.acm.taller2.persistence.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
-    public UsuarioModel saveUsuario(UsuarioModel usuario) {
+    @Autowired
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    public Usuario saveUsuario(Usuario usuario) {
         UsuarioEntity usuarioEntity = usuarioRepository.save(UsuarioMapper.modelToEntity(usuario));
         return UsuarioMapper.entityToModel(usuarioEntity);
     }
@@ -24,17 +28,17 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    public UsuarioModel findById(Long id) {
+    public Usuario findById(Long id) {
         UsuarioEntity usuarioEntity = usuarioRepository.findById(id).orElse(null);
         return usuarioEntity != null ? UsuarioMapper.entityToModel(usuarioEntity) : null;
     }
 
-    public UsuarioModel updateUsuario(UsuarioModel usuario) {
+    public Usuario updateUsuario(Usuario usuario) {
         UsuarioEntity usuarioEntity =  usuarioRepository.save(UsuarioMapper.modelToEntity(usuario));
         return UsuarioMapper.entityToModel(usuarioEntity);
     }
 
-    public List<UsuarioModel> findAll() {
+    public List<Usuario> findAll() {
         return usuarioRepository.findAll().stream().map(UsuarioMapper::entityToModel).collect(Collectors.toList());
     }
 }

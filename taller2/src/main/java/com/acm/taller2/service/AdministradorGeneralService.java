@@ -1,4 +1,4 @@
-package com.acm.hotel_gestion.services;
+package com.acm.taller2.service;
 
 import com.acm.hotel_gestion.models.AdministradorGeneralModel;
 import com.acm.hotel_gestion.persistence.entities.AdministradorGeneralEntity;
