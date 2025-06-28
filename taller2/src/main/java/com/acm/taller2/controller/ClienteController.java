@@ -1,9 +1,9 @@
 package com.acm.taller2.controller;
 
-import com.acm.hotel_gestion.controller.dto.ClienteDto;
-import com.acm.hotel_gestion.models.ClienteModel;
-import com.acm.hotel_gestion.services.ClienteService;
-import com.acm.hotel_gestion.util.ClienteMapper;
+import com.acm.taller2.dto.ClienteDTO;
+import com.acm.taller2.mappers.ClienteMapper;
+import com.acm.taller2.model.Cliente;
+import com.acm.taller2.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,29 +13,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cliente")
-@RequiredArgsConstructor
+@RequestMapping("/clientes")
 @Validated
 public class ClienteController {
+
     private final ClienteService clienteService;
 
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
+
     @PostMapping
-    public ResponseEntity<ClienteModel> saveCliente(@Valid @RequestBody ClienteDto cliente) {
+    public ResponseEntity<Cliente> saveCliente(@Valid @RequestBody ClienteDTO cliente) {
         return ResponseEntity.ok(clienteService.saveCliente(ClienteMapper.dtoToModel(cliente)));
     }
 
     @PutMapping
-    public ResponseEntity<ClienteModel> updateCliente(@Valid @RequestBody ClienteDto cliente) {
+    public ResponseEntity<Cliente> updateCliente(@Valid @RequestBody ClienteDTO cliente) {
         return ResponseEntity.ok(clienteService.updateCliente(ClienteMapper.dtoToModel(cliente)));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClienteModel> getClienteById(@PathVariable Long id) {
+    public ResponseEntity<Cliente> getClienteById(@PathVariable Long id) {
         return ResponseEntity.ok(clienteService.findById(id));
     }
 
     @GetMapping()
-    public ResponseEntity<List<ClienteModel>> getAllClientes() {
+    public ResponseEntity<List<Cliente>> getAllClientes() {
         return ResponseEntity.ok(clienteService.findAll());
     }
 

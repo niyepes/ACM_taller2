@@ -1,11 +1,11 @@
 package com.acm.taller2.controller;
 
-import com.acm.hotel_gestion.controller.dto.EmpleadoDto;
-import com.acm.hotel_gestion.models.EmpleadoModel;
-import com.acm.hotel_gestion.services.EmpleadoService;
-import com.acm.hotel_gestion.util.EmpleadoMapper;
+import com.acm.taller2.dto.EmpleadoDTO;
+import com.acm.taller2.mappers.EmpleadoMapper;
+import com.acm.taller2.model.Empleado;
+import com.acm.taller2.service.EmpleadoService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -13,29 +13,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/empleado")
-@RequiredArgsConstructor
+@RequestMapping("/empleados")
 @Validated
 public class EmpleadoController {
     private final EmpleadoService empleadoService;
 
+    @Autowired
+    public EmpleadoController(EmpleadoService empleadoService) {
+        this.empleadoService = empleadoService;
+    }
+
     @PostMapping
-    public ResponseEntity<EmpleadoModel> saveEmpleado(@Valid @RequestBody EmpleadoDto empleado) {
+    public ResponseEntity<Empleado> saveEmpleado(@Valid @RequestBody EmpleadoDTO empleado) {
         return ResponseEntity.ok(empleadoService.saveEmpleado(EmpleadoMapper.dtoToModel(empleado)));
     }
 
     @PutMapping
-    public ResponseEntity<EmpleadoModel> updateEmpleado(@Valid @RequestBody EmpleadoDto empleado) {
+    public ResponseEntity<Empleado> updateEmpleado(@Valid @RequestBody EmpleadoDTO empleado) {
         return ResponseEntity.ok(empleadoService.updateEmpleado(EmpleadoMapper.dtoToModel(empleado)));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmpleadoModel> getEmpleadoById(@PathVariable Long id) {
+    public ResponseEntity<Empleado> getEmpleadoById(@PathVariable Long id) {
         return ResponseEntity.ok(empleadoService.findById(id));
     }
 
     @GetMapping()
-    public ResponseEntity<List<EmpleadoModel>> getAllEmpleados() {
+    public ResponseEntity<List<Empleado>> getAllEmpleados() {
         return ResponseEntity.ok(empleadoService.findAll());
     }
 

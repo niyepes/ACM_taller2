@@ -1,6 +1,7 @@
 package com.acm.taller2.controller;
 
-import com.acm.taller2.persistence.HotelEntity;
+import com.acm.taller2.model.Hotel;
+import com.acm.taller2.persistence.entities.HotelEntity;
 import com.acm.taller2.service.HotelService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,13 @@ public class HotelController {
 
     @Operation(summary="Devuelve la información de un hotel a partir de su id", description = "El siguiente endpoint retorna la informacion de un hotel se requiere el ID para realizar la busqueda")
     @GetMapping("/{id}")
-    public ResponseEntity<HotelEntity> getHotelById (@PathVariable Long id){
-        return ResponseEntity.ok(hotelService.findHotelById(id));
+    public ResponseEntity<Hotel> getHotelById (@PathVariable Long id){
+        return ResponseEntity.ok(hotelService.findById(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteHotel (@PathVariable Long id){
-        hotelService.deleteHotel(id);
+        hotelService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

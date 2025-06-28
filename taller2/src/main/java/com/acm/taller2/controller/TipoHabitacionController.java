@@ -1,11 +1,11 @@
 package com.acm.taller2.controller;
 
-import com.acm.hotel_gestion.controller.dto.TipoHabitacionDto;
-import com.acm.hotel_gestion.models.TipoHabitacionModel;
-import com.acm.hotel_gestion.services.TipoHabitacionService;
-import com.acm.hotel_gestion.util.TipoHabitacionMapper;
+import com.acm.taller2.dto.TipoHabitacionDTO;
+import com.acm.taller2.mappers.TipoHabitacionMapper;
+import com.acm.taller2.model.TipoHabitacion;
+import com.acm.taller2.service.TipoHabitacionService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,28 +14,32 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tipoHabitacion")
-@RequiredArgsConstructor
 @Validated
 public class TipoHabitacionController {
     private final TipoHabitacionService tipoHabitacionService;
 
+    @Autowired
+    public TipoHabitacionController(TipoHabitacionService tipoHabitacionService) {
+        this.tipoHabitacionService = tipoHabitacionService;
+    }
+
     @PostMapping
-    public ResponseEntity<TipoHabitacionModel> saveTipoHabitacion(@Valid @RequestBody TipoHabitacionDto tipoHabitacion) {
+    public ResponseEntity<TipoHabitacion> saveTipoHabitacion(@Valid @RequestBody TipoHabitacionDTO tipoHabitacion) {
         return ResponseEntity.ok(tipoHabitacionService.saveTipoHabitacion(TipoHabitacionMapper.dtoToModel(tipoHabitacion)));
     }
 
     @PutMapping
-    public ResponseEntity<TipoHabitacionModel> updateTipoHabitacion(@Valid @RequestBody TipoHabitacionDto tipoHabitacion) {
+    public ResponseEntity<TipoHabitacion> updateTipoHabitacion(@Valid @RequestBody TipoHabitacionDTO tipoHabitacion) {
         return ResponseEntity.ok(tipoHabitacionService.updateTipoHabitacion(TipoHabitacionMapper.dtoToModel(tipoHabitacion)));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoHabitacionModel> getTipoHabitacionById(@PathVariable Long id) {
+    public ResponseEntity<TipoHabitacion> getTipoHabitacionById(@PathVariable Long id) {
         return ResponseEntity.ok(tipoHabitacionService.findById(id));
     }
 
     @GetMapping()
-    public ResponseEntity<List<TipoHabitacionModel>> getAllTipoHabitacions() {
+    public ResponseEntity<List<TipoHabitacion>> getAllTipoHabitacions() {
         return ResponseEntity.ok(tipoHabitacionService.findAll());
     }
 

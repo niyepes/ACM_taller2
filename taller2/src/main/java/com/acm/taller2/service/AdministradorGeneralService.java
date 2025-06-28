@@ -1,21 +1,26 @@
 package com.acm.taller2.service;
 
-import com.acm.hotel_gestion.models.AdministradorGeneralModel;
-import com.acm.hotel_gestion.persistence.entities.AdministradorGeneralEntity;
-import com.acm.hotel_gestion.persistence.repository.AdministradorGeneralRepository;
-import com.acm.hotel_gestion.util.AdministradorGeneralMapper;
+import com.acm.taller2.mappers.AdministradorGeneralMapper;
+import com.acm.taller2.model.AdministradorGeneral;
+import com.acm.taller2.persistence.entities.AdministradorGeneralEntity;
+import com.acm.taller2.persistence.repository.AdministradorGeneralRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class AdministradorGeneralService {
     private final AdministradorGeneralRepository administradorGeneralRepository;
 
-    public AdministradorGeneralModel saveAdministradorGeneral(AdministradorGeneralModel administradorGeneral) {
+    @Autowired
+    public AdministradorGeneralService(AdministradorGeneralRepository administradorGeneralRepository) {
+        this.administradorGeneralRepository = administradorGeneralRepository;
+    }
+
+    public AdministradorGeneral saveAdministradorGeneral(AdministradorGeneral administradorGeneral) {
         AdministradorGeneralEntity administradorGeneralEntity = administradorGeneralRepository.save(AdministradorGeneralMapper.modelToEntity(administradorGeneral));
         return AdministradorGeneralMapper.entityToModel(administradorGeneralEntity);
     }
@@ -24,17 +29,17 @@ public class AdministradorGeneralService {
         administradorGeneralRepository.deleteById(id);
     }
 
-    public AdministradorGeneralModel findById(Long id) {
+    public AdministradorGeneral findById(Long id) {
         AdministradorGeneralEntity administradorGeneralEntity = administradorGeneralRepository.findById(id).orElse(null);
         return administradorGeneralEntity != null ? AdministradorGeneralMapper.entityToModel(administradorGeneralEntity) : null;
     }
 
-    public AdministradorGeneralModel updateAdministradorGeneral(AdministradorGeneralModel administradorGeneral) {
+    public AdministradorGeneral updateAdministradorGeneral(AdministradorGeneral administradorGeneral) {
         AdministradorGeneralEntity administradorGeneralEntity =  administradorGeneralRepository.save(AdministradorGeneralMapper.modelToEntity(administradorGeneral));
         return AdministradorGeneralMapper.entityToModel(administradorGeneralEntity);
     }
 
-    public List<AdministradorGeneralModel> findAll() {
+    public List<AdministradorGeneral> findAll() {
         return administradorGeneralRepository.findAll().stream().map(AdministradorGeneralMapper::entityToModel).collect(Collectors.toList());
     }
 }

@@ -1,11 +1,11 @@
 package com.acm.taller2.controller;
 
-import com.acm.hotel_gestion.controller.dto.AdministradorGeneralDto;
-import com.acm.hotel_gestion.models.AdministradorGeneralModel;
-import com.acm.hotel_gestion.services.AdministradorGeneralService;
-import com.acm.hotel_gestion.util.AdministradorGeneralMapper;
+import com.acm.taller2.dto.AdministradorGeneralDTO;
+import com.acm.taller2.mappers.AdministradorGeneralMapper;
+import com.acm.taller2.model.AdministradorGeneral;
+import com.acm.taller2.service.AdministradorGeneralService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,28 +14,33 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/administradorGeneral")
-@RequiredArgsConstructor
+
 @Validated
 public class AdministradorGeneralController {
     private final AdministradorGeneralService administradorGeneralService;
 
+    @Autowired
+    public AdministradorGeneralController(AdministradorGeneralService administradorGeneralService) {
+        this.administradorGeneralService = administradorGeneralService;
+    }
+
     @PostMapping
-    public ResponseEntity<AdministradorGeneralModel> saveAdministradorGeneral(@Valid @RequestBody AdministradorGeneralDto administradorGeneral) {
+    public ResponseEntity<AdministradorGeneral> saveAdministradorGeneral(@Valid @RequestBody AdministradorGeneralDTO administradorGeneral) {
         return ResponseEntity.ok(administradorGeneralService.saveAdministradorGeneral(AdministradorGeneralMapper.dtoToModel(administradorGeneral)));
     }
 
     @PutMapping
-    public ResponseEntity<AdministradorGeneralModel> updateAdministradorGeneral(@Valid @RequestBody AdministradorGeneralDto administradorGeneral) {
+    public ResponseEntity<AdministradorGeneral> updateAdministradorGeneral(@Valid @RequestBody AdministradorGeneralDTO administradorGeneral) {
         return ResponseEntity.ok(administradorGeneralService.updateAdministradorGeneral(AdministradorGeneralMapper.dtoToModel(administradorGeneral)));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AdministradorGeneralModel> getAdministradorGeneralById(@PathVariable Long id) {
+    public ResponseEntity<AdministradorGeneral> getAdministradorGeneralById(@PathVariable Long id) {
         return ResponseEntity.ok(administradorGeneralService.findById(id));
     }
 
     @GetMapping()
-    public ResponseEntity<List<AdministradorGeneralModel>> getAllAdministradorGenerals() {
+    public ResponseEntity<List<AdministradorGeneral>> getAllAdministradorGenerals() {
         return ResponseEntity.ok(administradorGeneralService.findAll());
     }
 

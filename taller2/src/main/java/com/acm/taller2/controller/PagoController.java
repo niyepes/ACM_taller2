@@ -1,11 +1,12 @@
 package com.acm.taller2.controller;
 
-import com.acm.hotel_gestion.controller.dto.PagoDto;
-import com.acm.hotel_gestion.models.PagoModel;
-import com.acm.hotel_gestion.services.PagoService;
-import com.acm.hotel_gestion.util.PagoMapper;
+import com.acm.taller2.dto.PagoDTO;
+import com.acm.taller2.mappers.PagoMapper;
+import com.acm.taller2.model.Pago;
+import com.acm.taller2.service.PagoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -13,29 +14,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pago")
-@RequiredArgsConstructor
+@RequestMapping("/pagos")
 @Validated
 public class PagoController {
     private final PagoService pagoService;
 
+    @Autowired
+    public PagoController(PagoService pagoService) {
+        this.pagoService = pagoService;
+    }
+
     @PostMapping
-    public ResponseEntity<PagoModel> savePago(@Valid @RequestBody PagoDto pago) {
+    public ResponseEntity<Pago> savePago(@Valid @RequestBody PagoDTO pago) {
         return ResponseEntity.ok(pagoService.savePago(PagoMapper.dtoToModel(pago)));
     }
 
     @PutMapping
-    public ResponseEntity<PagoModel> updatePago(@Valid @RequestBody PagoDto pago) {
+    public ResponseEntity<Pago> updatePago(@Valid @RequestBody PagoDTO pago) {
         return ResponseEntity.ok(pagoService.updatePago(PagoMapper.dtoToModel(pago)));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PagoModel> getPagoById(@PathVariable Long id) {
+    public ResponseEntity<Pago> getPagoById(@PathVariable Long id) {
         return ResponseEntity.ok(pagoService.findById(id));
     }
 
     @GetMapping()
-    public ResponseEntity<List<PagoModel>> getAllPagos() {
+    public ResponseEntity<List<Pago>> getAllPagos() {
         return ResponseEntity.ok(pagoService.findAll());
     }
 

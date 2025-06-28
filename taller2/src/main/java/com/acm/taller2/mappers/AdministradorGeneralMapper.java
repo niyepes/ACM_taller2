@@ -38,4 +38,16 @@ public class AdministradorGeneralMapper {
                 .segundoApellido(administradorGeneral.getSegundoApellido())
                 .build();
     }
+
+    public static AdministradorGeneralEntity modelToEntity(AdministradorGeneral administradorGeneral) {
+        return AdministradorGeneralEntity.builder()
+                .id(administradorGeneral.getId())
+                .correo(administradorGeneral.getCorreo())
+                .telefono(administradorGeneral.getTelefono())
+                .primerNombre(administradorGeneral.getPrimerNombre())
+                .segundoNombre(administradorGeneral.getSegundoNombre())
+                .primerApellido(administradorGeneral.getPrimerApellido())
+                .segundoApellido(administradorGeneral.getSegundoApellido())
+                .build();
+    }
 }

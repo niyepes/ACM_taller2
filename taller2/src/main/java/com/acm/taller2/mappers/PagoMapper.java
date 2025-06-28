@@ -1,23 +1,23 @@
 package com.acm.taller2.mappers;
 
-import com.acm.hotel_gestion.controller.dto.PagoDto;
-import com.acm.hotel_gestion.models.PagoModel;
-import com.acm.hotel_gestion.models.ReservaModel;
-import com.acm.hotel_gestion.persistence.entities.PagoEntity;
-import com.acm.hotel_gestion.persistence.entities.ReservaEntity;
+import com.acm.taller2.dto.PagoDTO;
+import com.acm.taller2.model.Pago;
+import com.acm.taller2.model.Reserva;
+import com.acm.taller2.persistence.entities.PagoEntity;
+import com.acm.taller2.persistence.entities.ReservaEntity;
 
 public class PagoMapper {
-    public static PagoDto modelToDto(PagoModel pago){
-        return PagoDto.builder()
+    public static PagoDTO modelToDto(Pago pago){
+        return PagoDTO.builder()
                 .id(pago.getId())
                 .fecha(pago.getFecha())
-                .idreserva(ReservaModel.builder().id(pago.getReservaID()).build().getId())
+                .idreserva(Reserva.builder().id(pago.getReservaID()).build().getId())
                 .metodoPago(pago.getMetodoPago())
                 .pagoTotal(pago.getPagoTotal())
                 .build();
     }
-    public static PagoModel dtoToModel(PagoDto pago){
-        return PagoModel.builder()
+    public static Pago dtoToModel(PagoDTO pago){
+        return Pago.builder()
                 .id(pago.getId())
                 .fecha(pago.getFecha())
                 .reservaID(pago.getIdreserva())
@@ -25,7 +25,7 @@ public class PagoMapper {
                 .pagoTotal(pago.getPagoTotal())
                 .build();
     }
-    public static PagoEntity modelToEntity(PagoModel pago){
+    public static PagoEntity modelToEntity(Pago pago){
         return PagoEntity.builder()
                 .id(pago.getId())
                 .fecha(pago.getFecha())
@@ -34,8 +34,8 @@ public class PagoMapper {
                 .pagoTotal(pago.getPagoTotal())
                 .build();
     }
-    public static PagoModel entityToModel(PagoEntity pago){
-        return PagoModel.builder()
+    public static Pago entityToModel(PagoEntity pago){
+        return Pago.builder()
                 .id(pago.getId())
                 .fecha(pago.getFecha())
                 .reservaID(pago.getReserva().getId())

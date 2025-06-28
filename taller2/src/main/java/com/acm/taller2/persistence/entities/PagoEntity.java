@@ -75,4 +75,12 @@ public class PagoEntity implements Serializable {
     public void setPagoTotal(Integer pagoTotal) {
         this.pagoTotal = pagoTotal;
     }
+
+    public ReservaEntity getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(ReservaEntity reserva) {
+        this.reserva = reserva;
+    }
 }
