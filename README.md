@@ -51,7 +51,7 @@ Response: Code 200 OK
 
 ### Buscar un hotel
 
-Request: `http://localhost:8080/hoteles/9`
+Request: `http://localhost:8080/gestion_hotelera/v2/hoteles/9`
 
 Response Body:
 
